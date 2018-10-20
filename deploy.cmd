@@ -1,2 +1,2 @@
 npm install ionic
-ionic build
+ionic serve
