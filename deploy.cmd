@@ -1,1 +1,1 @@
-ionic serve
+ionic build
