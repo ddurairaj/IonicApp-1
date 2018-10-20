@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="card-background-page">
   <h3>Hacking Food</h3>
 
   <p>
@@ -15,18 +15,18 @@
   </p>
 
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-      <ion-card *ngFor="let item of items">
-
+      <ion-card *ngFor="let item of items" (tap)="openRestaurant(item)">
+        <img src="assets/imgs/rest.jpg"/>
         <ion-card-header>
           {{item.name}}
         </ion-card-header>
 
         <ion-card-content>
           <ion-row *ngFor="let dish of item.dishes">
-            <ion-col>
+            <ion-col col-10>
               {{dish.name}}
             </ion-col>
-            <ion-col text-left>
+            <ion-col col-2>
               ${{dish.price}}
             </ion-col>
           </ion-row>

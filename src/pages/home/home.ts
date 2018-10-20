@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { RestaurantPage } from '../restaurant/restaurant';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -26,6 +28,12 @@ export class HomePage {
   			price: 20
   		}]
   	}];
+  }
+
+  public openRestaurant(item) {
+  	this.navCtrl.push(RestaurantPage, {
+  		item: item
+  	})
   }
 
 }
