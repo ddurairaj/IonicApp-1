@@ -1,2 +1,2 @@
 npm install -g ionic
-ionic build
+ionic build --prod
