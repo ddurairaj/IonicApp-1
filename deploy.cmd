@@ -1,1 +1,2 @@
-ionic serve
+npm install -g ionic
+ionic build
