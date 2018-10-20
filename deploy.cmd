@@ -1,2 +1,1 @@
-npm install -g ionic
-ionic build --prod
+npm run build --prod --aot
