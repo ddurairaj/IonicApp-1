@@ -18,7 +18,7 @@ export class HomePage {
   userInput: any;
 
   constructor(public navCtrl: NavController, public mongo: MongoProvider, private mediaCapture: MediaCapture) {
-  	this.initializeItems();
+  	//this.initializeItems();
   }
 
   public openRestaurant(item) {
