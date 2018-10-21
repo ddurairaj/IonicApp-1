@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header style="background: #6b6054">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -7,15 +7,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="card-background-page">
-  <h3>Hacking Food</h3>
+<ion-content padding class="card-background-page" style="background: #d5ecd4">
+  <h3 color="primary">Hacking Food</h3>
 
   <p>
     {{this.text}}
   </p>
 
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-      <ion-card *ngFor="let item of items" (tap)="openRestaurant(item)">
+      <ion-card *ngFor="let item of items" (tap)="openRestaurant(item)" style="background: #c3dac3">
         <img src="assets/imgs/rest.jpg"/>
         <ion-card-header>
           {{item.restaurant}}
@@ -31,6 +31,5 @@
             </ion-col>
           </ion-row>
         </ion-card-content>
-
       </ion-card>
 </ion-content>

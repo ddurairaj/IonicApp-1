@@ -47,6 +47,7 @@ export class HomePage {
 
     this.mongo.findByTag(val.toLowerCase()).then((result) => {
       this.items = result;
+      this.text = JSON.stringify(result);
     }).catch(err => {
       console.log(JSON.stringify(err));
     })

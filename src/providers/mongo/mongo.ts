@@ -26,7 +26,10 @@ export class MongoProvider {
     return new Promise((resolve, reject) => {
       this.client.auth.loginWithCredential(new AnonymousCredential())
       .then(user => {
-	        this.db.collection('testResults').find({tags: searchTag}).asArray().then((result) => resolve(result)).catch((err) => reject(err));
+	     //   this.db.collection('testResults').find({tags: searchTag}).asArray()
+	      this.client.callFunction('returnResults',[searchTag,"testResults"])
+	        .then((result) => resolve(result))
+	        .catch((err) => reject(err));
 	    }).catch(err => {
 	    	reject(err);
 	    });
