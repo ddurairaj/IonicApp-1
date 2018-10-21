@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
@@ -11,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Stitch } from 'mongodb-stitch-browser-sdk';
+import { MongoProvider } from '../providers/mongo/mongo';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { Stitch } from 'mongodb-stitch-browser-sdk';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +37,8 @@ import { Stitch } from 'mongodb-stitch-browser-sdk';
     StatusBar,
     SplashScreen,
     Stitch,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MongoProvider
   ]
 })
 export class AppModule {}

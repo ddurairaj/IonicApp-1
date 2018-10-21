@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { RestaurantPage } from '../restaurant/restaurant';
 
-import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk';
+import { MongoProvider } from '../../providers/mongo/mongo';
 
 @Component({
   selector: 'page-home',
@@ -11,12 +11,12 @@ import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-b
 })
 export class HomePage {
 
-  items: any[];
+  items: any;
   text: any;
 
-  constructor(public navCtrl: NavController) {
-  	this.items = [{
-  		name: "Restaurant 1",
+  constructor(public navCtrl: NavController, public mongo: MongoProvider) {
+  	/*this.items = [{
+  		restaurant: "Restaurant 1",
   		dishes: [{
   			name: "Dish 1",
   			price: 12
@@ -25,27 +25,14 @@ export class HomePage {
   			price: 5
   		}]
   	},{
-  		name: "Restaurant 2",
+  		restaurant: "Restaurant 2",
   		dishes: [{
   			name: "Dish 1",
   			price: 20
   		}]
-  	}];
+  	}];*/
 
-    const client = Stitch.initializeDefaultAppClient('stitchstuff-qfxpx');
-
-   const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('hackFood');
-
-   client.auth.loginWithCredential(new AnonymousCredential()).then(user =>
-     db.collection('testResults').updateOne({owner_id: client.auth.user.id}, {$set:{number:42}}, {upsert:true})
-   ).then(() =>
-     db.collection('testResults').find({owner_id: client.auth.user.id}, { limit: 100}).asArray()
-   .then(docs => {
-       this.text = "Found docs => " + JSON.stringify(docs);
-       console.log("[MongoDB Stitch] Connected to Stitch");
-   })).catch(err => {
-     console.error(err)
-   });
+    
   }
 
   public openRestaurant(item) {
@@ -58,13 +45,10 @@ export class HomePage {
     // set val to the value of the searchbar
     const val = ev.target.value;
 
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
+    this.mongo.findByTag(val.toLowerCase()).then((result) => {
+      this.items = result;
+    }).catch(err => {
+      console.log(JSON.stringify(err));
+    })
   }
-
 }
