@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { RestaurantPage } from '../pages/restaurant/restaurant';
+import { HowtousePage } from '../pages/howtouse/howtouse';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,8 @@ import { MongoProvider } from '../providers/mongo/mongo';
     MyApp,
     HomePage,
     ListPage,
-    RestaurantPage
+    RestaurantPage,
+    HowtousePage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { MongoProvider } from '../providers/mongo/mongo';
     MyApp,
     HomePage,
     ListPage,
-    RestaurantPage
+    RestaurantPage,
+    HowtousePage
   ],
   providers: [
     StatusBar,

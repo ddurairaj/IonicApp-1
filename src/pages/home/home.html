@@ -15,26 +15,23 @@
 
   <img src="assets/imgs/logo_v2.png"/>
 
-  <p>
-    {{this.text}}
-  </p>
-
       <ion-toolbar style="background: transparent; padding: 0px">
         <ion-row style="background: #e1e1e1; padding: 0px">
-          <ion-col col-10>
+          <ion-col col-9>
             <div style="border-radius: 50%">
               <ion-searchbar [(ngModel)]="userInput" (ionInput)="getItems($event)"></ion-searchbar>
             </div>
           </ion-col>
-          <ion-col col-2>
+          <ion-col col-3>
             <button ion-button icon-only style="background-color: #fff; border-radius: 50%" (tap)="recordAudio()">
               <ion-icon name="mic"></ion-icon>
             </button>
           </ion-col>
         </ion-row>
       </ion-toolbar> 
+
       <ion-card *ngFor="let item of items" (tap)="openRestaurant(item)" style="background: #fff; border-radius: 10px">
-        <img src="assets/imgs/rest.jpg"/>
+        <img [(src)]="item.pic"/>
         <ion-card-header style="color: #6b6054;">
           <ion-title style="text-decoration: bold; color: #6b6054; text-align: center">{{item.restaurant}}</ion-title>
         </ion-card-header>

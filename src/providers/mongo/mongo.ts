@@ -27,11 +27,42 @@ export class MongoProvider {
       this.client.auth.loginWithCredential(new AnonymousCredential())
       .then(user => {
 	        //this.db.collection('results').find({tags: searchTag}).asArray().then((result) => resolve(result)).catch((err) => reject(err));
-	        this.client.callFunction('returnResults',[searchTag,'results']).then((result) => resolve(result)).catch((err) => reject(err));
+	        this.client.callFunction('returnResults',[searchTag,'sampleData']).then((result) => resolve(this.parseResult(result))).catch((err) => reject(err));
 	    }).catch(err => {
 	    	reject(err);
 	    });
 	});
+  }
+
+  parseResult(result) {
+  	let restaurantNames = [];
+  	let parsedResult = [];
+  	for(let i = 0; i < result.length; i++) {
+  		if(restaurantNames.indexOf(result[i]['restaurant']) == -1){
+  			restaurantNames.push(result[i]['restaurant']);
+  		}
+  	}
+
+  	
+  	
+  	for(let i = 0; i < restaurantNames.length; i++) {
+  		let restaurantObj = {dishes: []};
+  		for(let j = 0; j < result.length; j++) {
+  			if(result[j]['restaurant'] == restaurantNames[i]) {
+  				restaurantObj['restaurant'] = result[j]['restaurant'];
+  				restaurantObj['address'] = result[j]['address'];
+  				restaurantObj['pic'] = result[j]['pic'];
+  				restaurantObj['dishes'].push({
+  					name: result[j]['name'],
+  					price: result[j]['price']
+  				})
+  			}
+  		}
+  		parsedResult.push(restaurantObj);
+  	}
+
+  	console.log(restaurantNames);
+  	return parsedResult;
   }
 
 

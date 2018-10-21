@@ -52,7 +52,7 @@ export class HomePage {
       this.mongo.findByTag(val.toLowerCase()).then((result) => {
         //return result;
         this.items = result;
-        this.text = JSON.stringify(result);
+        console.log(result);
         //this.text = val;
       }).catch(err => {
         console.log(JSON.stringify(err));
