@@ -14,8 +14,25 @@
 
 
 <ion-content padding>
-	<p>{{ item.dishes }}</p>
-	<ion-fab right bottom>
+  <p>Lorem ipsum dolor sit amet, consectetur adispicing elit</p>
+	
+  <ion-list>
+    <ion-list-header>
+      Menu
+    </ion-list-header>
+    <ion-item *ngFor="let dish of item.dishes">
+      <ion-row>
+        <ion-col col-10>
+          {{ dish.name }}
+        </ion-col>
+        <ion-col col-2>
+          {{ dish.price }}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+	
+  <ion-fab right bottom>
 	    <button ion-fab color="light"><ion-icon name="search" (tap)="backAndSearch()"></ion-icon></button>
 	  </ion-fab>
 </ion-content>
