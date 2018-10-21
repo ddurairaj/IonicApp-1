@@ -13,7 +13,18 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <img src="assets/imgs/logo_v2.png"/>
+  <expandable-header [scrollArea]="mycontent" headerHeight="125">
+        <ion-item>
+            <ion-label><ion-icon name="search"></ion-icon></ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+            <ion-label><ion-icon name="funnel-outline"></ion-icon></ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+    </expandable-header>
+    <img src="assets/imgs/logo_v2.png"/>
 
   <p>
     {{this.text}}
