@@ -10,6 +10,8 @@ import { RestaurantPage } from '../pages/restaurant/restaurant';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { Stitch } from 'mongodb-stitch-browser-sdk';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,6 +33,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    Stitch,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
