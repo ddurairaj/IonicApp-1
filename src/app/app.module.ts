@@ -15,7 +15,7 @@ import { MediaCapture } from '@ionic-native/media-capture';
 import { Stitch } from 'mongodb-stitch-browser-sdk';
 import { MongoProvider } from '../providers/mongo/mongo';
 
-import { ComponentsModule } from '../components/components.module';
+import { ExpandableHeader } from '../components/expandable-header/expandable-header';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { ComponentsModule } from '../components/components.module';
     HomePage,
     ListPage,
     RestaurantPage,
-    ComponentsModule
+    ExpandableHeader
   ],
   imports: [
     BrowserModule,
