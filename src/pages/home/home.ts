@@ -5,6 +5,8 @@ import { RestaurantPage } from '../restaurant/restaurant';
 
 import { MongoProvider } from '../../providers/mongo/mongo';
 
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -15,7 +17,7 @@ export class HomePage {
   text: any;
   userInput: any;
 
-  constructor(public navCtrl: NavController, public mongo: MongoProvider) {
+  constructor(public navCtrl: NavController, public mongo: MongoProvider, private mediaCapture: MediaCapture) {
   	this.initializeItems();
   }
 
@@ -80,5 +82,13 @@ export class HomePage {
           price: 20
         }]
       }];
+  }
+
+  recordAudio() {
+    this.mediaCapture.captureAudio({})
+      .then(
+        (data: MediaFile[]) => this.text = JSON.stringify(data),
+        (err: CaptureError) => this.text = JSON.stringify(err)
+      );
   }
 }

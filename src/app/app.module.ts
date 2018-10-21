@@ -10,6 +10,7 @@ import { RestaurantPage } from '../pages/restaurant/restaurant';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MediaCapture } from '@ionic-native/media-capture';
 
 import { Stitch } from 'mongodb-stitch-browser-sdk';
 import { MongoProvider } from '../providers/mongo/mongo';
@@ -38,7 +39,8 @@ import { MongoProvider } from '../providers/mongo/mongo';
     SplashScreen,
     Stitch,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MongoProvider
+    MongoProvider,
+    MediaCapture
   ]
 })
 export class AppModule {}

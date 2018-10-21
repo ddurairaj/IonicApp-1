@@ -13,7 +13,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <h1 style="color: #6b6054; text-align: center">Hacking Food</h1>
+  <img src="assets/imgs/logo_v2.png"/>
 
   <p>
     {{this.text}}
@@ -27,7 +27,7 @@
             </div>
           </ion-col>
           <ion-col col-2>
-            <button ion-button icon-only style="background-color: #fff; border-radius: 50%">
+            <button ion-button icon-only style="background-color: #fff; border-radius: 50%" (tap)="recordAudio()">
               <ion-icon name="mic"></ion-icon>
             </button>
           </ion-col>
