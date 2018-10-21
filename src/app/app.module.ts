@@ -15,12 +15,15 @@ import { MediaCapture } from '@ionic-native/media-capture';
 import { Stitch } from 'mongodb-stitch-browser-sdk';
 import { MongoProvider } from '../providers/mongo/mongo';
 
+import { ComponentsModule } from '../components/components.module';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    RestaurantPage
+    RestaurantPage,
+    ComponentsModule
   ],
   imports: [
     BrowserModule,
