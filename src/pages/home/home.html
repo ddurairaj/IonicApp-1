@@ -7,26 +7,44 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="card-background-page" style="background: #d5ecd4">
+<ion-content padding class="card-background-page" style="background: #e1e1e1">
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <h3 color="primary">Hacking Food</h3>
+  <h1 style="color: #6b6054; text-align: center">Hacking Food</h1>
 
   <p>
     {{this.text}}
   </p>
 
-  <ion-searchbar [(ngModel)]="userInput" (ionInput)="getItems($event)"></ion-searchbar>
-      <ion-card *ngFor="let item of items" (tap)="openRestaurant(item)" style="background: #c3dac3">
+      <ion-toolbar style="background: transparent; padding: 0px">
+        <ion-row style="background: #e1e1e1; padding: 0px">
+          <ion-col col-10>
+            <div style="border-radius: 50%">
+              <ion-searchbar [(ngModel)]="userInput" (ionInput)="getItems($event)"></ion-searchbar>
+            </div>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button icon-only style="background-color: #fff; border-radius: 50%">
+              <ion-icon name="mic"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar> 
+      <ion-card *ngFor="let item of items" (tap)="openRestaurant(item)" style="background: #fff; border-radius: 10px">
         <img src="assets/imgs/rest.jpg"/>
-        <ion-card-header>
-          {{item.restaurant}}
+        <ion-card-header style="color: #6b6054;">
+          <ion-title style="text-decoration: bold; color: #6b6054; text-align: center">{{item.restaurant}}</ion-title>
         </ion-card-header>
 
         <ion-card-content>
+          <ion-row>
+            <ion-col>
+              {{ item.address }}
+            </ion-col>
+          </ion-row>
           <ion-row *ngFor="let dish of item.dishes">
             <ion-col col-10>
               {{dish.name}}
