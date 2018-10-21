@@ -15,6 +15,18 @@ import { MediaCapture } from '@ionic-native/media-capture';
 import { Stitch } from 'mongodb-stitch-browser-sdk';
 import { MongoProvider } from '../providers/mongo/mongo';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
+var firebaseConfig = {
+  apiKey: "AIzaSyBbMGslkxfDktxFMc2XySKlkQ_sp6zDH0s",
+  databaseURL: "gs://hacktx-18.appspot.com",
+  projectId: "hacktx-18",
+  storageBucket: "hack",
+  messagingSenderId: "me"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,7 +37,11 @@ import { MongoProvider } from '../providers/mongo/mongo';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -5,7 +5,10 @@ import { RestaurantPage } from '../restaurant/restaurant';
 
 import { MongoProvider } from '../../providers/mongo/mongo';
 
-import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+import { MediaCapture, MediaFile, CaptureError } from '@ionic-native/media-capture';
+
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
+
 
 @Component({
   selector: 'page-home',
@@ -17,7 +20,7 @@ export class HomePage {
   text: any;
   userInput: any;
 
-  constructor(public navCtrl: NavController, public mongo: MongoProvider, private mediaCapture: MediaCapture) {
+  constructor(public navCtrl: NavController, public mongo: MongoProvider, private mediaCapture: MediaCapture, private afStorage: AngularFireStorage) {
   	this.initializeItems();
   }
 
@@ -87,8 +90,17 @@ export class HomePage {
   recordAudio() {
     this.mediaCapture.captureAudio({})
       .then(
-        (data: MediaFile[]) => this.text = JSON.stringify(data),
-        (err: CaptureError) => this.text = JSON.stringify(err)
+        (data: MediaFile[]) => {
+          this.text = JSON.stringify(data);
+          this.uploadToStorage(data).then((message) => console.log(message)).catch(err => console.log(err));
+        },(err: CaptureError) => this.text = JSON.stringify(err)
       );
   }
+
+  uploadToStorage(information): AngularFireUploadTask {
+    let newName = `${new Date().getTime()}.txt`;
+ 
+    return this.afStorage.ref(`files/${newName}`).putString(information);
+  }
+
 }
